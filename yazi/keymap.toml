@@ -1,0 +1,30 @@
+# toggle pane
+[[mgr.prepend_keymap]]
+on   = "T"
+run  = "plugin toggle-pane min-preview"
+desc = "Show or hide the preview pane"
+
+# open lazygit
+[[mgr.prepend_keymap]]
+on   = [ "o", "g" ]
+run  = "plugin lazygit"
+desc = "open lazygit here"
+
+# open nvim
+[[mgr.prepend_keymap]]
+on   = [ "o", "n" ]
+for = "unix"
+run  = 'shell --orphan --block nvim'
+desc = "open nvim here"
+
+# escape to cancel input
+[[input.prepend_keymap]]
+on   = "<Esc>"
+run  = "close"
+desc = "Cancel input"
+
+# smart enter to open file or enter directory
+[[mgr.prepend_keymap]]
+on   = "<Enter>"
+run  = "plugin smart-enter"
+desc = "Enter the child directory, or open the file"
