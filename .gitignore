@@ -1,0 +1,10 @@
+composer
+configstore/update-notifier-@google
+github-copilot
+herd-lite
+fish/completions
+fish/conf.d
+fish/functions
+fish/themes
+fish/config.fish
+configstore
