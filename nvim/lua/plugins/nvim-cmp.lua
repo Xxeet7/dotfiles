@@ -16,12 +16,10 @@ return {
         local cmp = require "cmp"
 
         cmp.setup.cmdline("/", {
-          mapping = cmp.mapping.preset.cmdline(),
           sources = { { name = "buffer" } },
         })
 
         cmp.setup.cmdline(":", {
-          mapping = cmp.mapping.preset.cmdline(),
           sources = cmp.config.sources(
             { { name = "path" } },
             { { name = "cmdline" }, option = {
@@ -50,20 +48,70 @@ return {
       },
     }
     opts.mapping = {
-      ["<UP>"] = cmp.mapping.select_prev_item(),
-      ["<DOWN>"] = cmp.mapping.select_next_item(),
-      ["<Tab>"] = cmp.mapping.confirm {
-        behavior = cmp.ConfirmBehavior.Insert,
-        select = true,
+      ["<UP>"] = {
+        i = function(fallback)
+          if cmp.visible() then
+            cmp.select_prev_item()
+          else
+            fallback()
+          end
+        end,
+        c = function(fallback)
+          if cmp.visible() then
+            cmp.select_prev_item()
+          else
+            fallback()
+          end
+        end,
       },
-      -- ["<C-e>"] = cmp.mapping.abort(),
-      ["<C-o>"] = function()
-        if cmp.visible() then
-          cmp.abort()
-        else
-          cmp.complete()
-        end
-      end,
+      ["<DOWN>"] = {
+        i = function(fallback)
+          if cmp.visible() then
+            cmp.select_next_item()
+          else
+            fallback()
+          end
+        end,
+        c = function(fallback)
+          if cmp.visible() then
+            cmp.select_next_item()
+          else
+            fallback()
+          end
+        end,
+      },
+      ["<Tab>"] = {
+        i = cmp.confirm {
+          behavior = cmp.ConfirmBehavior.Insert,
+          select = true,
+        },
+        c = false,
+      },
+      ["<S-Tab>"] = {
+        c = false,
+      },
+      ["<C-p>"] = {
+        c = cmp.mapping.confirm {
+          behavior = cmp.ConfirmBehavior.Insert,
+          select = true,
+        },
+      },
+      ["<C-o>"] = {
+        i = function()
+          if cmp.visible() then
+            cmp.abort()
+          else
+            cmp.complete()
+          end
+        end,
+        c = function()
+          if cmp.visible() then
+            cmp.abort()
+          else
+            cmp.complete()
+          end
+        end,
+      },
       ["<C-f>"] = function()
         if cmp.visible_docs() then
           cmp.close_docs()
