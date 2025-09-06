@@ -1,0 +1,2 @@
+**[Fastfetch](https://github.com/fastfetch-cli/fastfetch) config that i yanked from [ML4W dotfiles](https://github.com/mylinuxforwork/dotfiles)**
+![preview](/.github/assets/Screenshot 2025-09-06 145937.png)
