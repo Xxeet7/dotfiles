@@ -16,10 +16,12 @@ return {
         local cmp = require "cmp"
 
         cmp.setup.cmdline("/", {
+          mapping = cmp.mapping.preset.cmdline(),
           sources = { { name = "buffer" } },
         })
 
         cmp.setup.cmdline(":", {
+          mapping = cmp.mapping.preset.cmdline(),
           sources = cmp.config.sources(
             { { name = "path" } },
             { { name = "cmdline" }, option = {
@@ -48,53 +50,11 @@ return {
       },
     }
     opts.mapping = {
-      ["<UP>"] = {
-        i = function(fallback)
-          if cmp.visible() then
-            cmp.select_prev_item()
-          else
-            fallback()
-          end
-        end,
-        c = function(fallback)
-          if cmp.visible() then
-            cmp.select_prev_item()
-          else
-            fallback()
-          end
-        end,
-      },
-      ["<DOWN>"] = {
-        i = function(fallback)
-          if cmp.visible() then
-            cmp.select_next_item()
-          else
-            fallback()
-          end
-        end,
-        c = function(fallback)
-          if cmp.visible() then
-            cmp.select_next_item()
-          else
-            fallback()
-          end
-        end,
-      },
-      ["<Tab>"] = {
-        i = cmp.confirm {
-          behavior = cmp.ConfirmBehavior.Insert,
-          select = true,
-        },
-        c = false,
-      },
-      ["<S-Tab>"] = {
-        c = false,
-      },
-      ["<C-p>"] = {
-        c = cmp.mapping.confirm {
-          behavior = cmp.ConfirmBehavior.Insert,
-          select = true,
-        },
+      ["<UP>"] = cmp.mapping.select_prev_item(),
+      ["<DOWN>"] = cmp.mapping.select_next_item(),
+      ["<Tab>"] = cmp.mapping.confirm {
+        behavior = cmp.ConfirmBehavior.Insert,
+        select = true,
       },
       ["<C-o>"] = {
         i = function()
