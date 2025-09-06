@@ -1,11 +1,14 @@
+# php related
 composer
-configstore/update-notifier-@google
-github-copilot
 herd-lite
+
+# ai related
+github-copilot
+configstore
+
+# fish plugin directory
 fish/completions
 fish/conf.d
 fish/functions
 fish/themes
-fish/config.fish
-configstore
-nvim/lua/plugins/markdownpreview.lua
+
