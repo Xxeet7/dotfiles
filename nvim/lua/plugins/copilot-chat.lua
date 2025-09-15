@@ -4,6 +4,7 @@
 -- LINKS : https://github.com/CopilotC-Nvim/CopilotChat.nvim
 -- ================================================================================================
 
+if true then return {} end
 return {
   {
     "CopilotC-Nvim/CopilotChat.nvim",
