@@ -63,9 +63,15 @@ end, { desc = "Open last copilot session" })
 map(
   { "n", "t" },
   "<A-g>",
-  "<cmd>lua require('nvchad.term').toggle { pos = 'float', id = 'geminiterm', cmd = 'gemini' }<CR>",
+  "<cmd>lua require('nvchad.term').toggle { pos = 'float', id = 'geminiterm', cmd = 'gemini', float_opts = { width = 1.0, height = 0.87 } }<CR>",
   { desc = "open/close gemini term" }
 ) -- gemini cli (alt-g)
+map(
+  { "n", "t" },
+  "<A-G>",
+  "<cmd>lua require('nvchad.term').toggle { pos = 'float', id = 'opencodeterm', cmd = 'opencode', float_opts = { width = 1.0, height = 0.87 } }<CR>",
+  { desc = "open/close opencode term" }
+) -- opencode cli (alt-G)
 map(
   { "n", "t" },
   "<A-I>",
