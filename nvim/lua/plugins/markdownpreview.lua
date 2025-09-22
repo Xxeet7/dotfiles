@@ -1,3 +1,9 @@
+-- ================================================================================================
+-- TITLE : markdown-preview.nvim
+-- ABOUT : preview markdown files in the browser
+-- LINKS : https://github.com/iamcco/markdown-preview.nvim
+-- ================================================================================================
+
 return {
   "iamcco/markdown-preview.nvim",
   cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },

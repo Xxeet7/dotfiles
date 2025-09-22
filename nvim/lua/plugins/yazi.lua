@@ -1,3 +1,9 @@
+-- ================================================================================================
+-- TITLE : yazi.nvim
+-- ABOUT : add yazi file explorer to neovim. It is a modern and fast file explorer that can be used as a replacement for netrw.
+-- LINKS  : https://github.com/mikavilpas/yazi.nvim
+-- ================================================================================================
+
 ---@type LazySpec
 return {
   "mikavilpas/yazi.nvim",
