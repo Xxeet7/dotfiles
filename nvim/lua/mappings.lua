@@ -43,6 +43,14 @@ map(
   { desc = "Explorer (CWD)" }
 )
 
+map("n", "<tab>", function()
+  TabuflineNext()
+end, { desc = "buffer goto next" })
+
+map("n", "<S-tab>", function()
+  TabuflinePrev()
+end, { desc = "buffer goto prev" })
+
 -- copilot chat
 -- map("n", "<leader>aa", "<cmd>CopilotChatToggle<CR>", { desc = "Open/close Copilot Chat" })
 -- map("v", "<leader>aa", "<cmd>CopilotChatPrompts<CR>", { desc = "Copilot action for highlighted" })
@@ -72,13 +80,7 @@ map(
   "<cmd>lua require('nvchad.term').toggle { pos = 'float', id = 'opencodeterm', cmd = 'opencode', float_opts = { width = 1.0, height = 0.87 } }<CR>",
   { desc = "open/close opencode term" }
 ) -- opencode cli (alt-G)
-map(
-  { "n", "t" },
-  "<A-I>",
-  "<cmd>FloatermToggle<CR>",
-  { desc = "open/close Terminal Hub" }
-) -- Terminal Hub (alt-I) <- big I
-
+map({ "n", "t" }, "<A-I>", "<cmd>FloatermToggle<CR>", { desc = "open/close Terminal Hub" }) -- Terminal Hub (alt-I) <- big I
 
 -- Toggle Utils
 map("n", "<leader>tt", ToggleTransparency, { desc = "Toggle Transparency" }) -- Transparency
