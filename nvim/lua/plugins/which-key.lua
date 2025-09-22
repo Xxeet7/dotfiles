@@ -16,7 +16,7 @@ return {
     },
   },
   config = function()
-    wk = require "which-key"
+    local wk = require "which-key"
     wk.add {
       {
         "<leader>e",
@@ -46,7 +46,7 @@ return {
       { "<leader>o", group = "open", icon = { icon = "" } },
       { "<leader>c", group = "code", icon = { icon = "", color = "azure" } },
       { "<leader>f", group = "telescope", icon = { icon = "", color = "green" } },
-      { "<leader>a", group = "AI", icon = { icon = "", color = "azure" } },
+      -- { "<leader>a", group = "AI", icon = { icon = "", color = "azure" } },
       { "<leader>t", group = "toggle", icon = { icon = "", color = "yellow" } },
       { "<leader>l", group = "LSP", icon = { icon = "󰒍", color = "blue" } },
       { "<leader>w", group = "Workspace", icon = { icon = "", color = "blue" } },
