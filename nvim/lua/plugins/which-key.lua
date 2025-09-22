@@ -49,7 +49,7 @@ return {
       -- { "<leader>a", group = "AI", icon = { icon = "", color = "azure" } },
       { "<leader>t", group = "toggle", icon = { icon = "", color = "yellow" } },
       { "<leader>l", group = "LSP", icon = { icon = "󰒍", color = "blue" } },
-      { "<leader>w", group = "Workspace", icon = { icon = "", color = "blue" } },
+      { "<leader>w", group = "WhichKey", icon = { icon = "", color = "blue" } },
       { "<leader>r", group = "Variables", icon = { icon = "", color = "red" } },
       { "<leader>v", group = "Vim", icon = { icon = "", color = "green" } },
     }
