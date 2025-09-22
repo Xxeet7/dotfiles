@@ -105,6 +105,8 @@ map(
   { desc = "Open Lazy git" }
 ) -- Lazy git
 map("n", "<leader>oc", "<cmd>NvCheatsheet<CR>", { desc = "open nvcheatsheet" }) --NvCheatsheet
+map("n", "<leader>oto", "<cmd>Typr<CR>", { desc = "open Typr (typing test)" }) -- Typr
+map("n", "<leader>ots", "<cmd>TyprStats<CR>", { desc = "open Typr Stats" }) -- Typr stats
 
 -- Telescope (find)
 map("n", "<leader>fm", "<cmd>Telescope marks<CR>", { desc = "telescope find marks" })

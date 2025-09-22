@@ -44,6 +44,7 @@ return {
         icon = { icon = "", color = "blue" },
       },
       { "<leader>o", group = "open", icon = { icon = "" } },
+      { "<leader>ot", group = "open Typr", icon = { icon = "" } },
       { "<leader>c", group = "code", icon = { icon = "", color = "azure" } },
       { "<leader>f", group = "telescope", icon = { icon = "", color = "green" } },
       -- { "<leader>a", group = "AI", icon = { icon = "", color = "azure" } },
