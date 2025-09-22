@@ -2,6 +2,9 @@
 
 This repository contains my personal configuration for the [Yazi file manager](https://github.com/sxyazi/yazi).
 
+## Demo
+[!yazi demo](./../.github/assets/yazi.gif)
+
 ## Prerequisites
 1. [git](https://git-scm.com/downloads)
 2. [yazi](https://github.com/sxyazi/yazi)
@@ -25,7 +28,7 @@ cd ~/.config/yazi/
 # for windows (powershell)
 cd %AppData%\yazi\config\
 ```
-3. install packages:
+3. install plugins:
 ```bash
 ya pkg install
 ```
