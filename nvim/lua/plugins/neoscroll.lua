@@ -4,6 +4,14 @@
 -- LINKS : https://github.com/karb94/neoscroll.nvim
 -- ================================================================================================
 
+-- disable neoscroll in neovide
+if vim.g.neovide then
+  return {
+    "karb94/neoscroll.nvim",
+    enabled = false,
+  }
+end
+
 return {
   "karb94/neoscroll.nvim",
   event = "VeryLazy",
