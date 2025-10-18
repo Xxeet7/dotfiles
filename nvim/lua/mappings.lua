@@ -3,8 +3,6 @@
 -- ================================================================================================
 
 require "nvchad.mappings"
-local history_dir = vim.fn.stdpath "data" .. "/copilotchat_history"
-local files = vim.fn.glob(history_dir .. "/*.json", false, true)
 local map = vim.keymap.set
 local unmap = vim.keymap.del
 
@@ -50,22 +48,6 @@ end, { desc = "buffer goto next" })
 map("n", "<S-tab>", function()
   TabuflinePrev()
 end, { desc = "buffer goto prev" })
-
--- copilot chat
--- map("n", "<leader>aa", "<cmd>CopilotChatToggle<CR>", { desc = "Open/close Copilot Chat" })
--- map("v", "<leader>aa", "<cmd>CopilotChatPrompts<CR>", { desc = "Copilot action for highlighted" })
--- map("n", "<leader>ar", function()
---   table.sort(files, function(a, b)
---     return a > b
---   end)
---   if #files > 0 then
---     local latest = vim.fn.fnamemodify(files[1], ":t:r")
---     require("CopilotChat").load(latest)
---     require("CopilotChat").open()
---   else
---     vim.notify("No CopilotChat sessions found.", vim.log.levels.WARN)
---   end
--- end, { desc = "Open last copilot session" })
 
 -- Toggle terminal <ALT>
 map(
