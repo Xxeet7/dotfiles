@@ -2,7 +2,6 @@
 -- TITLE : LSP Configuration
 -- ================================================================================================
 
-local lspconfig = require "lspconfig"
 local nvlsp = require "nvchad.configs.lspconfig"
 local map = vim.keymap.set
 
@@ -70,7 +69,8 @@ for name, server_opts in pairs(servers) do
     capabilities = nvlsp.capabilities,
   }, server_opts)
 
-  lspconfig[name].setup(final_opts)
+  vim.lsp.config[name] = final_opts
+  vim.lsp.enable(name)
 end
 
 -- for Nvchad diagnostic configuration
