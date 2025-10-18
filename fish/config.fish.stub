@@ -8,7 +8,6 @@ alias cls clear
 alias ls 'eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions -G --group-directories-first'
 alias lsa 'eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions -a -G --group-directories-first'
 alias tree 'tree -CA'
-alias ~w 'cd /mnt/c/Users/Kling'
 
 # abbreviations
 abbr -a editfish "$EDITOR ~/.config/fish/config.fish"
