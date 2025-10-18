@@ -11,4 +11,6 @@ fish/completions
 fish/conf.d
 fish/functions
 fish/themes
+fish/config.fish
+fish/fish_variables
 
