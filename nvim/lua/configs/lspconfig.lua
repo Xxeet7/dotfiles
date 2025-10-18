@@ -5,26 +5,6 @@
 local nvlsp = require "nvchad.configs.lspconfig"
 local map = vim.keymap.set
 
-local on_attach = function(_, bufnr)
-  local function opts(desc)
-    return { buffer = bufnr, desc = "LSP " .. desc }
-  end
-
-  map("n", "<leader>lI", "<cmd>Telescope lsp_implementations<CR>", opts "Go to implementation")
-  map("n", "<leader>ld", "<cmd>Telescope lsp_definitions<CR>", opts "Go to definition")
-  map("n", "<leader>lD", "<cmd>Telescope lsp_type_definitions<CR>", opts "Go to type definition")
-  map("n", "<leader>ls", "<cmd>Telescope lsp_document_symbols<CR>", opts "list symbols (var, function, etc.) in buffer")
-  map(
-    "n",
-    "<leader>lS",
-    "<cmd>Telescope lsp_workspace_symbols<CR>",
-    opts "list symbols (var, function, etc.) in workspace"
-  )
-  map("n", "<leader>lR", "<cmd>Telescope lsp_references<CR>", opts "show references")
-
-  map("n", "<leader>lr", require "nvchad.lsp.renamer", opts "Variable rename")
-end
-
 -- Server-specific configurations
 -- These will be merged with the common_opts
 local servers = {
@@ -60,6 +40,27 @@ local servers = {
   -- pyright = {},
   -- rust_analyzer = {},
 }
+
+-- Custom mappings when LSP attaches to a buffer
+local on_attach = function(_, bufnr)
+  local function opts(desc)
+    return { buffer = bufnr, desc = "LSP " .. desc }
+  end
+
+  map("n", "<leader>lI", "<cmd>Telescope lsp_implementations<CR>", opts "Go to implementation")
+  map("n", "<leader>ld", "<cmd>Telescope lsp_definitions<CR>", opts "Go to definition")
+  map("n", "<leader>lD", "<cmd>Telescope lsp_type_definitions<CR>", opts "Go to type definition")
+  map("n", "<leader>ls", "<cmd>Telescope lsp_document_symbols<CR>", opts "list symbols (var, function, etc.) in buffer")
+  map(
+    "n",
+    "<leader>lS",
+    "<cmd>Telescope lsp_workspace_symbols<CR>",
+    opts "list symbols (var, function, etc.) in workspace"
+  )
+  map("n", "<leader>lR", "<cmd>Telescope lsp_references<CR>", opts "show references")
+
+  map("n", "<leader>lr", require "nvchad.lsp.renamer", opts "Variable rename")
+end
 
 -- Loop through servers and set them up
 for name, server_opts in pairs(servers) do
