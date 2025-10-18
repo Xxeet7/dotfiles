@@ -85,6 +85,9 @@ map(
 map("n", "<leader>oc", "<cmd>NvCheatsheet<CR>", { desc = "open nvcheatsheet" }) --NvCheatsheet
 map("n", "<leader>oto", "<cmd>Typr<CR>", { desc = "open Typr (typing test)" }) -- Typr
 map("n", "<leader>ots", "<cmd>TyprStats<CR>", { desc = "open Typr Stats" }) -- Typr stats
+map({"n", "v"}, "<leader>oyf", "<cmd>Yazi<cr>", { desc = "Open yazi at the current file" }) -- Yazi open at current file
+map("n", "<leader>oyc", "<cmd>Yazi cwd<cr>", { desc = "Open the file manager in nvim's working directory" }) -- Yazi open at working dir
+map("n", "<leader>oyt", "<cmd>Yazi toggle<cr>", { desc = "Resume the last yazi session" }) -- Yazi Resume last session
 
 -- Telescope (find)
 map("n", "<leader>fm", "<cmd>Telescope marks<CR>", { desc = "telescope find marks" })
