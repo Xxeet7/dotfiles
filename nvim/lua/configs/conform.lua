@@ -2,31 +2,24 @@
 -- TITLE : Formatter Configuration
 -- ================================================================================================
 
+-- write your formatters configurations here
+-- Names and example can be check on: https://github.com/stevearc/conform.nvim/tree/master/lua/conform/formatters
+-- or check on `:help conform-formatters`
 local options = {
   formatters_by_ft = {
     lua = { "stylua" },
-    php = { "pint" },
-    javascript = { "prettier" },
-    javascriptreact = { "prettier" },
-    typescript = { "prettier" },
-    typescriptreact = { "prettier" },
-    json = { "prettier" },
+    javascript = { "prettierd" },
+    javascriptreact = { "prettierd" },
+    typescript = { "prettierd" },
+    typescriptreact = { "prettierd" },
+    vue = { "prettierd" },
+    json = { "prettierd" },
   },
-  formatters = {
-    pint = function()
-      local pint_config = vim.fn.stdpath "config" .. "\\other\\pint.json"
-      return {
-        command = "pint",
-        args = { "$FILENAME", "--silent", "--config=" .. pint_config },
-      }
-    end,
-    prettier = {
-      command = "prettier",
-      args = { "-w", "$FILENAME" },
-      stdin = false,
-    },
+  formatters = {},
+  default_format_opts = {
+    lsp_format = "fallback",
+    stop_after_first = true,
   },
-  -- log_level = vim.log.levels.DEBUG,
 }
 
 return options

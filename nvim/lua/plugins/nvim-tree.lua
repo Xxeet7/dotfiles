@@ -33,8 +33,8 @@ return {
       --   update_root = true,
       -- },
       view = {
-        -- number = true,
-        -- relativenumber = true,
+        number = true,
+        relativenumber = true,
         -- side = "right",
         width = 45,
         -- float = {

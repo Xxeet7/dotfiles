@@ -4,7 +4,6 @@
 -- LINKS : https://github.com/nvim-mini/mini.surround
 -- ================================================================================================
 
--- if true then return {} end
 return {
   "echasnovski/mini.surround",
   version = false,

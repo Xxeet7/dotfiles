@@ -15,5 +15,12 @@ end
 return {
   "sphamba/smear-cursor.nvim",
   event = "VeryLazy",
-  opts = {},
+  config = function()
+    _G.smear_cursor = require("smear_cursor")
+    require("smear_cursor").setup {
+      stiffness = 0.8,
+      trailing_stiffness = 0.5,
+      transparent_bg_fallback_color = "#303030",
+    }
+  end,
 }

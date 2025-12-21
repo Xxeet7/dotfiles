@@ -4,14 +4,17 @@
 
 local nvlsp = require "nvchad.configs.lspconfig"
 local map = vim.keymap.set
+local x = vim.diagnostic.severity
 
--- Server-specific configurations
--- These will be merged with the common_opts
+-- write your language server configurations here
+-- Names and example can be check on: https://github.com/neovim/nvim-lspconfig/tree/master/lsp
+-- or check on `:help lspconfig-all`
 local servers = {
   lua_ls = {
     filetypes = { "lua" },
     settings = {
       Lua = {
+        hint = { enable = true },
         runtime = { version = "LuaJIT" },
         workspace = {
           library = {
@@ -23,6 +26,10 @@ local servers = {
         },
       },
     },
+  },
+  copilot = {
+    filetypes = nil,
+    on_attach = "lspconfig", -- needed for the signin and logout command to exist
   },
   html = {
     filetypes = { "html" },
@@ -36,12 +43,26 @@ local servers = {
   ts_ls = {
     filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
   },
-  -- Add other servers here, for example:
-  -- pyright = {},
-  -- rust_analyzer = {},
+  tinymist = {
+    filetypes = { "typst" },
+    settings = {
+      formatterMode = "typstyle",
+      semanticTokens = "disable",
+    },
+  },
+  -- Add other servers configuration here
+  -- add minimal configuration like filetypes for `:MasonInstallAll` to work
+  -- example:
+  -- pyright = {
+  --   filetypes = { "python" },
+  -- },
+  -- rust_analyzer = {
+  --   filetypes = { "rust" },
+  -- },
 }
 
--- Custom mappings when LSP attaches to a buffer
+-- Custom intructions to run when lsp server attaches to buffer
+-- write your custom keymaps or other things here
 local on_attach = function(_, bufnr)
   local function opts(desc)
     return { buffer = bufnr, desc = "LSP " .. desc }
@@ -63,19 +84,28 @@ local on_attach = function(_, bufnr)
 end
 
 -- Loop through servers and set them up
-for name, server_opts in pairs(servers) do
-  local final_opts = vim.tbl_deep_extend("force", {}, {
-    on_attach = on_attach,
+for name, opts in pairs(servers) do
+  vim.tbl_deep_extend("force", {}, {
     on_init = nvlsp.on_init,
     capabilities = nvlsp.capabilities,
-  }, server_opts)
+  }, opts or {})
 
-  vim.lsp.config[name] = final_opts
+  if opts.on_attach == nil then
+    opts.on_attach = on_attach
+  end
+
+  if opts.on_attach == "lspconfig" then
+    opts.on_attach = nil
+  end
+
+  vim.lsp.config[name] = opts
   vim.lsp.enable(name)
 end
 
--- for Nvchad diagnostic configuration
-dofile(vim.g.base46_cache .. "lsp")
-require("nvchad.lsp").diagnostic_config()
-
--- read :h vim.lsp.config for changing options of lsp servers
+-- for diagnostic configuration
+vim.diagnostic.config {
+  virtual_text = true,
+  signs = { text = { [x.ERROR] = "󰅙", [x.WARN] = "", [x.INFO] = "󰋼", [x.HINT] = "󰌵" } },
+  underline = true,
+  float = { border = "single" },
+}

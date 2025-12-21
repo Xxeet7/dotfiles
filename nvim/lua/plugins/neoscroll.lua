@@ -15,5 +15,8 @@ end
 return {
   "karb94/neoscroll.nvim",
   event = "VeryLazy",
-  opts = {},
+  config = function()
+    _G.neoscroll = require("neoscroll")
+    require("neoscroll").setup { easing = "quintic" }
+  end,
 }

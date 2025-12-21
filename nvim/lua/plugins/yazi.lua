@@ -1,7 +1,7 @@
 -- ================================================================================================
 -- TITLE : yazi.nvim
 -- ABOUT : add yazi file explorer to neovim. It is a modern and fast file explorer that can be used as a replacement for netrw.
--- LINKS  : https://github.com/mikavilpas/yazi.nvim
+-- LINKS : https://github.com/mikavilpas/yazi.nvim
 -- ================================================================================================
 
 ---@type LazySpec
@@ -12,13 +12,12 @@ return {
   dependencies = {
     { "nvim-lua/plenary.nvim", lazy = true },
   },
-  ---@type YaziConfig | {}
   opts = {
     -- if you want to open yazi instead of netrw, see below for more info
     open_for_directories = false,
     keymaps = {
       show_help = "<f1>",
-      change_working_directory = "<c-p>",
+      change_working_directory = "<C-CR>",
     },
   },
   -- 👇 if you use `open_for_directories=true`, this is recommended

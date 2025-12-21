@@ -8,6 +8,7 @@ return {
   "rcarriga/nvim-notify",
   event = "VeryLazy",
   config = function()
+    dofile(vim.g.base46_cache .. "statusline")
     require("notify").setup {
       on_open = function(win)
         vim.api.nvim_win_set_config(win, { zindex = 1000 })

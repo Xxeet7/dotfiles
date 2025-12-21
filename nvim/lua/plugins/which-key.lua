@@ -1,7 +1,7 @@
 -- ================================================================================================
 -- TITLE : which-key.nvim
 -- ABOUT : Create key bindings that stick. WhichKey helps you remember your Neovim keymaps, by showing available keybindings in a popup as you type.
--- LINKS  : https://github.com/folke/which-key.nvim
+-- LINKS : https://github.com/folke/which-key.nvim
 -- ================================================================================================
 
 return {
@@ -33,18 +33,14 @@ return {
         desc = "Delete without yanking",
         icon = { icon = "󰗨", color = "red" },
       },
-      {
-        "<leader>s",
-        desc = "split",
-        icon = { icon = "", color = "blue" },
-      },
-      { "<leader>o", group = "open", icon = { icon = "" } },
-      { "<leader>ot", group = "open Typr", icon = { icon = "" } },
-      { "<leader>oy", group = "open Yazi", icon = { icon = "󰇥" } },
-      { "<leader>c", group = "code", icon = { icon = "", color = "azure" } },
-      { "<leader>f", group = "telescope", icon = { icon = "", color = "green" } },
-      -- { "<leader>a", group = "AI", icon = { icon = "", color = "azure" } },
-      { "<leader>t", group = "toggle", icon = { icon = "", color = "yellow" } },
+      { "<leader>s", group = "Split", icon = { icon = "", color = "blue" } },
+      { "<leader>o", group = "Open", icon = { icon = "" } },
+      { "<leader>ot", group = "Open Typr", icon = { icon = "" } },
+      { "<leader>y", group = "Yazi", icon = { icon = "󰇥" } },
+      { "<leader>c", group = "Code", icon = { icon = "", color = "azure" } },
+      { "<leader>f", group = "Telescope", icon = { icon = "", color = "green" } },
+      { "<leader>a", group = "AI", icon = { icon = "", color = "azure" } },
+      { "<leader>t", group = "Toggle", icon = { icon = "", color = "yellow" } },
       { "<leader>l", group = "LSP", icon = { icon = "󰒍", color = "blue" } },
       { "<leader>w", group = "WhichKey", icon = { icon = "", color = "blue" } },
       { "<leader>r", group = "Variables", icon = { icon = "", color = "red" } },

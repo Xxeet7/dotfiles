@@ -6,7 +6,7 @@ require "nvchad.mappings"
 local map = vim.keymap.set
 local unmap = vim.keymap.del
 
---unmappin default nvchad mappings
+-- unmappin default nvchad mappings
 -- needed for changing default
 unmap("n", "<leader>n") --line number
 unmap("n", "<leader>b") --new buffer
@@ -20,17 +20,31 @@ unmap("n", "<leader>ds") --lsp doc
 unmap("n", "<leader>cm") --find commit
 unmap("n", "<leader>ch") --old Nvcheatsheet map
 unmap("n", "<leader>th") --old Nvchad theme map
+unmap("x", "<leader>fm") --old format mapping for visual
 
 -- general mappings
 map({ "n", "v" }, ";", ":", { desc = "CMD enter command mode" }) -- ";" to ":"
 map("i", "jk", "<ESC>") -- easy exit insert mode
 map("n", "<C-q>", "<cmd>q<CR>", { desc = "general quit vim" }) -- quit
 map({ "n", "i" }, "<C-s>", "<cmd>w<CR>", { desc = "general save" }) -- save
-map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", { desc = "hover info" }) -- lsp Hover info
+map("n", "K", function()
+  if not vim.diagnostic.open_float({ scope = "cursor" }) then
+    vim.lsp.buf.hover {  silent = true, max_height = 7, border = "single" }
+  end
+  vim.diagnostic.open_float({ focus = false, silent = true, max_height = 7, border = "single", scope = "cursor" })
+end, { desc = "hover info" }) -- lsp Hover info
 map("n", "<leader>X", "<cmd>lua require('nvchad.tabufline').closeAllBufs(true)<CR>", { desc = "buffer close all" }) -- close all buffers
+
+-- turn Change, Select, Delete to not yank with defer_fn after 200ms (idk why it's not working without defer_fn)
+-- for delete (d) add leader command without yank
 map({ "n", "v" }, "<leader>d", '"_d', { desc = "Delete without yanking" }) -- delete without yanking
-map({ "n", "v" }, "c", '"_c', { desc = "Replace/Change without yanking" }) -- make "c" not yanking by default
-map("n", "C", '"_C', { desc = "Replace/Change to end without yanking" }) -- same
+vim.defer_fn(function()
+  map("n", "D", '"_D', { desc = "Delete to end without yanking", noremap = true }) -- D
+  map({ "n", "v", "x" }, "c", '"_c', { desc = "Replace/Change without yanking", noremap = true }) -- make "c" not yanking by default
+  map("n", "C", '"_C', { desc = "Replace/Change to end without yanking", noremap = true }) -- C
+  map({ "n", "v", "x" }, "s", '"_s', { desc = "Select without yanking", noremap = true }) -- make "s" not yanking by default
+  map("n", "S", '"_S', { desc = "Select to end without yanking", noremap = true }) -- S
+end, 200)
 
 -- nvim tree
 map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "Explorer (Root)" })
@@ -41,36 +55,45 @@ map(
   { desc = "Explorer (CWD)" }
 )
 
-map("n", "<tab>", function()
-  TabuflineNext()
-end, { desc = "buffer goto next" })
-
-map("n", "<S-tab>", function()
-  TabuflinePrev()
-end, { desc = "buffer goto prev" })
-
 -- Toggle terminal <ALT>
 map(
   { "n", "t" },
-  "<A-g>",
-  "<cmd>lua require('nvchad.term').toggle { pos = 'float', id = 'geminiterm', cmd = 'gemini', float_opts = { width = 1.0, height = 0.87 } }<CR>",
-  { desc = "open/close gemini term" }
-) -- gemini cli (alt-g)
-map({ "n", "t" }, "<A-I>", "<cmd>FloatermToggle<CR>", { desc = "open/close Terminal Hub" }) -- Terminal Hub (alt-I) <- big I
+  "<A-I>",
+  "<cmd>lua require('nvchad.term').toggle { pos = 'float' }<CR>",
+  { desc = "open/close wide term" }
+) -- wide term
+map({ "n", "t" }, "<A-i>", "<cmd>FloatermToggle<CR>", { desc = "open/close Terminal Hub" }) -- Terminal Hub (alt-i)
 
 -- Toggle Utils
 map("n", "<leader>tt", ToggleTransparency, { desc = "Toggle Transparency" }) -- Transparency
 map("n", "<leader>ts", "<cmd>lua require('base46').toggle_theme()<CR>", { desc = "toggle switch theme" }) -- Theme switch
 map("n", "<leader>tk", "<cmd>ShowkeysToggle<CR>", { desc = "Toggle show Keystroke" }) -- Show keystroke
-map("n", "<leader>tw", ToggleWrap, { desc = "toggle wrap line" }) -- Wrap line
+map("n", "<leader>tw", function()
+  vim.opt.wrap = not vim.opt.wrap._value
+end, { desc = "toggle wrap line" }) -- Wrap line
+map("n", "<leader>ta", ToggleAnimation, { desc = "toggle editor animation" }) -- animation
 
--- Code format
+-- Code Utils
 map(
   { "n", "x" },
   "<leader>cf",
   " <cmd>lua require('conform').format { lsp_fallback = true, async = true }<CR>",
-  { desc = "format file" }
-)
+  { desc = "Format file" }
+) -- format with conform
+map("x", "<leader>cc", "<cmd>CodeSnap<cr>", { desc = "Save selected code snapshot into clipboard" }) -- CodeSnap to clipboard
+map(
+  "x",
+  "<leader>cs",
+  "<cmd>CodeSnapSave<cr>",
+  { desc = "Save selected code snapshot in ~/Pictures/Screenshots/codesnaps/" }
+) -- CodeSnap save to file
+map("n", "<leader>cq", "<cmd>lua require('quicker').toggle({ focus = true, height = 10 })<cr>", { desc = "quickfix" })
+map("n", "<leader>cl", function()
+  vim.diagnostic.config {
+    virtual_lines = not vim.diagnostic.config().virtual_lines,
+    virtual_text = not vim.diagnostic.config().virtual_text,
+  }
+end, { desc = "Diagnostic virtual_lines" })
 
 -- Open Utils buffer
 map("n", "<leader>om", "<cmd>Mason<CR>", { desc = "Open Mason" }) -- Mason
@@ -83,23 +106,35 @@ map(
   { desc = "Open Lazy git" }
 ) -- Lazy git
 map("n", "<leader>oc", "<cmd>NvCheatsheet<CR>", { desc = "open nvcheatsheet" }) --NvCheatsheet
-map("n", "<leader>oto", "<cmd>Typr<CR>", { desc = "open Typr (typing test)" }) -- Typr
-map("n", "<leader>ots", "<cmd>TyprStats<CR>", { desc = "open Typr Stats" }) -- Typr stats
-map({"n", "v"}, "<leader>oyf", "<cmd>Yazi<cr>", { desc = "Open yazi at the current file" }) -- Yazi open at current file
-map("n", "<leader>oyc", "<cmd>Yazi cwd<cr>", { desc = "Open the file manager in nvim's working directory" }) -- Yazi open at working dir
-map("n", "<leader>oyt", "<cmd>Yazi toggle<cr>", { desc = "Resume the last yazi session" }) -- Yazi Resume last session
+map("n", "<leader>oto", "<cmd>Typr<CR>", { desc = "Typr open (typing test)" }) -- Typr
+map("n", "<leader>ots", "<cmd>TyprStats<CR>", { desc = "Typr Stats" }) -- Typr stats
+map("n", "<leader>ov", "<cmd>lua require('nvchad.themes').open()<CR>", { desc = "open nvchad themes selector" }) -- Nvchad themes
+
+-- Yazi file explorer
+map({ "n", "v" }, "<leader>yf", "<cmd>Yazi<cr>", { desc = "Open yazi at the current file" }) -- Yazi open at current file
+map("n", "<leader>yc", "<cmd>Yazi cwd<cr>", { desc = "Open the file manager in nvim's working directory" }) -- Yazi open at working dir
+map("n", "<leader>yt", "<cmd>Yazi toggle<cr>", { desc = "Resume the last yazi session" }) -- Yazi Resume last session
 
 -- Telescope (find)
 map("n", "<leader>fm", "<cmd>Telescope marks<CR>", { desc = "telescope find marks" })
+map("n", "<leader>fs", "<cmd>Telescope themes<CR>", { desc = "telescope set themes" })
+map("n", "<leader>ft", "<cmd>Telescope todo-comments<CR>", { desc = "telescope todo highlight" })
 map("n", "<leader>fk", "<cmd>Telescope keymaps<CR>", { desc = "telescope find keymaps" })
-map("n", "<leader>fc", "<cmd>Telescope terms<CR>", { desc = "telescope pick hidden console (term)" })
-map("n", "<leader>ft", "<cmd>lua require('nvchad.themes').open()<CR>", { desc = "telescope nvchad themes" }) -- Nvchad themes
+map("n", "<leader>fd", "<cmd>Telescope diagnostics<CR>", { desc = "telescope search diagnostics" })
+map("n", "<leader>fn", "<cmd>Telescope notify<CR>", { desc = "telescope notifications history" }) -- Notifications
+map("n", "<leader>fr", "<cmd>Telescope resume<CR>", { desc = "telescope resume last search" }) -- Command resume
 
 -- vim commands
 map("n", "<leader>vs", "<cmd>suspend<CR>", { desc = "vim suspend" })
 map("n", "<leader>vw", "<cmd>w<CR>", { desc = "vim write (save)" })
 map("n", "<leader>vq", "<cmd>q<CR>", { desc = "vim quit" })
 map("n", "<leader>vQ", "<cmd>q!<CR>", { desc = "vim force quit" })
+map(
+  "n",
+  "<leader>vc",
+  ":lua require('telescope.builtin').find_files({cwd = vim.fn.stdpath('config')})<CR>",
+  { desc = "Find files on config folder" }
+)
 
 -- center screen when jumping
 map("n", "n", "nzzzv", { desc = "Next search result (centered)" })
@@ -119,15 +154,55 @@ map("n", "<C-Down>", "<Cmd>resize -2<CR>", { desc = "Decrease window height" })
 map("n", "<C-Left>", "<Cmd>vertical resize +2<CR>", { desc = "Decrease window width" })
 map("n", "<C-Right>", "<Cmd>vertical resize -2<CR>", { desc = "Increase window width" })
 
--- Nvmenu (right click menu)
-map({ "n", "v", "i" }, "<RightMouse>", function()
-  require("menu.utils").delete_old_menus()
+-- Split/Join code
+map({ "n" }, "J", "<Cmd>TSJToggle<CR>", { desc = "Split/Join code" })
 
-  vim.cmd.exec '"normal! \\<RightMouse>"'
+-- move lines and selections
+map("n", "<A-j>", ":.move.+1<cr>", { desc = "Move Line ( below )", silent = true }) -- below
+map("n", "<A-k>", ":.move.-2<cr>", { desc = "Move Line ( above )", silent = true }) -- above
 
-  -- clicked buf
-  local buf = vim.api.nvim_win_get_buf(vim.fn.getmousepos().winid)
-  local options = vim.bo[buf].ft == "NvimTree" and "nvimtree" or "default"
+map("x", "<A-j>", ":'<'>move'>+1<cr>gv", { desc = "Move selected ( below )", silent = true }) -- below
+map("x", "<A-k>", ":'<'>move'<-2<cr>gv", { desc = "Move selected ( above )", silent = true }) -- above
 
-  require("menu").open(options, { mouse = true })
-end, {})
+-- duplicate line and selections
+map("n", "<A-S-j>", ":.copy.<cr>", { desc = "duplicate line ( below )", silent = true }) -- below
+map("n", "<A-S-k>", ":.copy.-1<cr>", { desc = "duplicate line ( above )", silent = true }) -- above
+
+map("x", "<A-S-j>", ":'<'>copy'><cr>gv", { desc = "duplicate selected ( below )", silent = true }) -- below
+map("x", "<A-S-k>", ":'<'>copy'<-1<cr>gv", { desc = "duplicate selected ( above )", silent = true }) -- above
+
+-- move buffer
+map("n", "<C-Tab>", "<cmd>lua require('nvchad.tabufline').move_buf(1)<cr>", { desc = "Move Buffer to right" }) -- Right
+map("n", "<C-S-Tab>", "<cmd>lua require('nvchad.tabufline').move_buf(-1)<cr>", { desc = "Move Buffer to left" }) -- Left
+
+map({ "n", "t", "i", "x" }, "<c-.>", function()
+  require("sidekick.cli").toggle()
+end, { desc = "Sidekick Toggle", silent = true })
+
+map("n", "<leader>aa", function()
+  require("sidekick.cli").toggle()
+end, { desc = "Sidekick Toggle CLI", silent = true })
+
+map("n", "<leader>as", function()
+  require("sidekick.cli").select()
+end, { desc = "AI Select", silent = true })
+
+map("n", "<leader>ad", function()
+  require("sidekick.cli").close()
+end, { desc = "AI detach", silent = true })
+
+map({ "x", "n" }, "<leader>at", function()
+  require("sidekick.cli").send { msg = "{this}" }
+end, { desc = "Send this to AI", silent = true })
+
+map("n", "<leader>af", function()
+  require("sidekick.cli").send { msg = "{file}" }
+end, { desc = "Send this file to AI", silent = true })
+
+map("x", "<leader>av", function()
+  require("sidekick.cli").send { msg = "{selection}" }
+end, { desc = "Send visual selection to AI", silent = true })
+
+map({ "n", "x" }, "<leader>ap", function()
+  require("sidekick.cli").prompt()
+end, { desc = "AI Select Prompt", silent = true })
