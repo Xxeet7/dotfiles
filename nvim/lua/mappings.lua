@@ -28,10 +28,10 @@ map("i", "jk", "<ESC>") -- easy exit insert mode
 map("n", "<C-q>", "<cmd>q<CR>", { desc = "general quit vim" }) -- quit
 map({ "n", "i" }, "<C-s>", "<cmd>w<CR>", { desc = "general save" }) -- save
 map("n", "K", function()
-  if not vim.diagnostic.open_float({ scope = "cursor" }) then
-    vim.lsp.buf.hover {  silent = true, max_height = 7, border = "single" }
+  if not vim.diagnostic.open_float { scope = "cursor" } then
+    vim.lsp.buf.hover { silent = true, max_height = 7, border = "single" }
   end
-  vim.diagnostic.open_float({ focus = false, silent = true, max_height = 7, border = "single", scope = "cursor" })
+  vim.diagnostic.open_float { focus = false, silent = true, max_height = 7, border = "single", scope = "cursor" }
 end, { desc = "hover info" }) -- lsp Hover info
 map("n", "<leader>X", "<cmd>lua require('nvchad.tabufline').closeAllBufs(true)<CR>", { desc = "buffer close all" }) -- close all buffers
 
@@ -175,6 +175,15 @@ map("x", "<A-S-k>", ":'<'>copy'<-1<cr>gv", { desc = "duplicate selected ( above 
 map("n", "<C-Tab>", "<cmd>lua require('nvchad.tabufline').move_buf(1)<cr>", { desc = "Move Buffer to right" }) -- Right
 map("n", "<C-S-Tab>", "<cmd>lua require('nvchad.tabufline').move_buf(-1)<cr>", { desc = "Move Buffer to left" }) -- Left
 
+-- hop
+map("n", "<leader>h", "<cmd>HopChar1<cr>", { desc = "Quick jump to char" }) -- quick hop char
+map("n", "<leader>jw", "<cmd>HopWord<cr>", { desc = "Jump to word" }) -- hop word
+map("n", "<leader>jc", "<cmd>HopCamelCase<cr>", { desc = "Jump to camelcase" }) -- hop CamelCase
+map("n", "<leader>j2", "<cmd>HopChar2<cr>", { desc = "Jump to 2 char" }) -- hop Char 2
+map("n", "<leader>j/", "<cmd>HopPattern<cr>", { desc = "Jump to pattern" }) -- hop pattern
+map("n", "<leader>jl", "<cmd>HopLine<cr>", { desc = "Jump to line" }) -- hop line
+
+-- Sidekick / Ai
 map({ "n", "t", "i", "x" }, "<c-.>", function()
   require("sidekick.cli").toggle()
 end, { desc = "Sidekick Toggle", silent = true })

@@ -16,6 +16,7 @@ return {
     },
   },
   config = function()
+    dofile(vim.g.base46_cache .. "whichkey")
     local wk = require "which-key"
     wk.add {
       {
@@ -33,10 +34,10 @@ return {
         desc = "Delete without yanking",
         icon = { icon = "󰗨", color = "red" },
       },
-      { "<leader>s", group = "Split", icon = { icon = "", color = "blue" } },
+      { "<leader>s", group = "Split", icon = { icon = "", color = "red" } },
       { "<leader>o", group = "Open", icon = { icon = "" } },
       { "<leader>ot", group = "Open Typr", icon = { icon = "" } },
-      { "<leader>y", group = "Yazi", icon = { icon = "󰇥" } },
+      { "<leader>y", group = "Yazi", icon = { icon = "󰇥", color = "yellow" } },
       { "<leader>c", group = "Code", icon = { icon = "", color = "azure" } },
       { "<leader>f", group = "Telescope", icon = { icon = "", color = "green" } },
       { "<leader>a", group = "AI", icon = { icon = "", color = "azure" } },
@@ -45,6 +46,7 @@ return {
       { "<leader>w", group = "WhichKey", icon = { icon = "", color = "blue" } },
       { "<leader>r", group = "Variables", icon = { icon = "", color = "red" } },
       { "<leader>v", group = "Vim", icon = { icon = "", color = "green" } },
+      { "<leader>j", group = "Jump", icon = { icon = "󰣉", color = "red" } },
     }
   end,
 }
