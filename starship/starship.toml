@@ -137,11 +137,11 @@ vimcmd_visual_symbol = '[V ↣](bold yellow)'
 format = '[[ $symbol ](fg:crust bg:green)]($style)'
 
 [buf]
-symbol = " "
+symbol = ""
 format = '[[ $symbol ](fg:crust bg:green)]($style)'
 
 [c]
-symbol = " "
+symbol = ""
 format = '[[ $symbol ](fg:crust bg:green)]($style)'
 
 [cmake]
@@ -154,14 +154,14 @@ format = '[[ $symbol ](fg:crust bg:green)]($style)'
 format = '[[ $symbol ](fg:crust bg:green)]($style)'
 
 [crystal]
-symbol = " "
+symbol = ""
 format = '[[ $symbol ](fg:crust bg:green)]($style)'
 
 [daml]
 format = '[[ $symbol ](fg:crust bg:green)]($style)'
 
 [dart]
-symbol = " "
+symbol = ""
 format = '[[ $symbol ](fg:crust bg:green)]($style)'
 
 [deno]
@@ -171,15 +171,15 @@ format = '[[ $symbol ](fg:crust bg:green)]($style)'
 format = '[[ $symbol ](fg:crust bg:green)]($style)'
 
 [elixir]
-symbol = " "
+symbol = ""
 format = '[[ $symbol ](fg:crust bg:green)]($style)'
 
 [elm]
-symbol = " "
+symbol = ""
 format = '[[ $symbol ](fg:crust bg:green)]($style)'
 
 [fennel]
-symbol = " "
+symbol = ""
 format = '[[ $symbol ](fg:crust bg:green)]($style)'
 
 [fortran]
@@ -189,57 +189,57 @@ format = '[[ $symbol ](fg:crust bg:green)]($style)'
 format = '[[ $symbol ](fg:crust bg:green)]($style)'
 
 [golang]
-symbol = " "
+symbol = ""
 format = '[[ $symbol ](fg:crust bg:green)]($style)'
 
 [gradle]
-symbol = " "
+symbol = ""
 format = '[[ $symbol ](fg:crust bg:green)]($style)'
 
 [haskell]
-symbol = " "
+symbol = ""
 format = '[[ $symbol ](fg:crust bg:green)]($style)'
 
 [haxe]
-symbol = " "
+symbol = ""
 format = '[[ $symbol ](fg:crust bg:green)]($style)'
 
 [helm]
 format = '[[ $symbol ](fg:crust bg:green)]($style)'
 
 [java]
-symbol = " "
+symbol = ""
 format = '[[ $symbol ](fg:crust bg:green)]($style)'
 
 [julia]
-symbol = " "
+symbol = ""
 format = '[[ $symbol ](fg:crust bg:green)]($style)'
 
 [kotlin]
-symbol = " "
+symbol = ""
 format = '[[ $symbol ](fg:crust bg:green)]($style)'
 
 [lua]
-symbol = " "
+symbol = ""
 format = '[[ $symbol ](fg:crust bg:green)]($style)'
 
 [meson]
-symbol = "󰔷 "
+symbol = "󰔷"
 format = '[[ $symbol ](fg:crust bg:green)]($style)'
 
 [mojo]
 format = '[[ $symbol ](fg:crust bg:green)]($style)'
 
 [nim]
-symbol = "󰆥 "
+symbol = "󰆥"
 format = '[[ $symbol ](fg:crust bg:green)]($style)'
 
 [nodejs]
-symbol = " "
+symbol = ""
 format = '[[ $symbol ](fg:crust bg:green)]($style)'
 
 [ocaml]
-symbol = " "
+symbol = ""
 format = '[[ $symbol ](fg:crust bg:green)]($style)'
 
 [odin]
@@ -249,11 +249,11 @@ format = '[[ $symbol ](fg:crust bg:green)]($style)'
 format = '[[ $symbol ](fg:crust bg:green)]($style)'
 
 [perl]
-symbol = " "
+symbol = ""
 format = '[[ $symbol ](fg:crust bg:green)]($style)'
 
 [php]
-symbol = " "
+symbol = ""
 style = "bg:green"
 format = '[[ $symbol ](fg:crust bg:green)]($style)'
 
@@ -267,7 +267,7 @@ format = '[[ $symbol ](fg:crust bg:green)]($style)'
 format = '[[ $symbol ](fg:crust bg:green)]($style)'
 
 [python]
-symbol = " "
+symbol = ""
 format = '[[ $symbol ](fg:crust bg:green)]($style)'
 
 [quarto]
@@ -280,30 +280,30 @@ format = '[[ $symbol ](fg:crust bg:green)]($style)'
 format = '[[ $symbol ](fg:crust bg:green)]($style)'
 
 [rlang]
-symbol = "󰟔 "
+symbol = "󰟔"
 format = '[[ $symbol ](fg:crust bg:green)]($style)'
 
 [ruby]
-symbol = " "
+symbol = ""
 format = '[[ $symbol ](fg:crust bg:green)]($style)'
 
 [rust]
-symbol = "󱘗 "
+symbol = "󱘗"
 format = '[[ $symbol ](fg:crust bg:green)]($style)'
 
 [scala]
-symbol = " "
+symbol = ""
 format = '[[ $symbol ](fg:crust bg:green)]($style)'
 
 [solidity]
 format = '[[ $symbol ](fg:crust bg:green)]($style)'
 
 [swift]
-symbol = " "
+symbol = ""
 format = '[[ $symbol ](fg:crust bg:green)]($style)'
 
 [typst]
-symbol = " "
+symbol = ""
 format = '[[ $symbol ](fg:crust bg:green)]($style)'
 
 [vagrant]
@@ -316,7 +316,7 @@ format = '[[ $symbol ](fg:crust bg:green)]($style)'
 format = '[[ $symbol ](fg:crust bg:green)]($style)'
 
 [zig]
-symbol = " "
+symbol = ""
 format = '[[ $symbol ](fg:crust bg:green)]($style)'
 
 [os.symbols]
