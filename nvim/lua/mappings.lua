@@ -195,6 +195,12 @@ map("n", "<leader>tu", function()
   require("symbol-usage").refresh()
 end, { desc = "Toggle virtual symbol usage near a function", silent = true })
 
+-- Tabs
+map("n", "[<Tab>", "<cmd>tabp<cr>", { desc = "Previous tab" }) -- Previous tab
+map("n", "]<Tab>", "<cmd>tabn<cr>", { desc = "Next tab" }) -- Next tab
+map("n", "tx", "<cmd>tabc<cr>", { desc = "Close tab" }) -- Close tab
+map("n", "tn", "<cmd>tab split<cr>", { desc = "New tab" }) -- New tab
+
 -- Sidekick / Ai
 map({ "n", "t", "i", "x" }, "<c-.>", function()
   require("sidekick.cli").toggle()
