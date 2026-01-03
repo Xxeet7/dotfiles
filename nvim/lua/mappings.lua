@@ -183,6 +183,12 @@ map("n", "<leader>j2", "<cmd>HopChar2<cr>", { desc = "Jump to 2 char" }) -- hop 
 map("n", "<leader>j/", "<cmd>HopPattern<cr>", { desc = "Jump to pattern" }) -- hop pattern
 map("n", "<leader>jl", "<cmd>HopLine<cr>", { desc = "Jump to line" }) -- hop line
 
+-- virtual symbol usage toggle
+map("n", "<leader>tu", function()
+  require("symbol-usage").toggle_globally()
+  require("symbol-usage").refresh()
+end, { desc = "Toggle virtual symbol usage near a function", silent = true })
+
 -- Sidekick / Ai
 map({ "n", "t", "i", "x" }, "<c-.>", function()
   require("sidekick.cli").toggle()
