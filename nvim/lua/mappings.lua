@@ -109,6 +109,12 @@ map("n", "<leader>oc", "<cmd>NvCheatsheet<CR>", { desc = "open nvcheatsheet" }) 
 map("n", "<leader>oto", "<cmd>Typr<CR>", { desc = "Typr open (typing test)" }) -- Typr
 map("n", "<leader>ots", "<cmd>TyprStats<CR>", { desc = "Typr Stats" }) -- Typr stats
 map("n", "<leader>ov", "<cmd>lua require('nvchad.themes').open()<CR>", { desc = "open nvchad themes selector" }) -- Nvchad themes
+map(
+  "n",
+  "<leader>of",
+  "<cmd>lua require('grug-far').open({ transient = true })<CR>",
+  { desc = "open Find and Replace (grug-far)" }
+) -- Find and Replace (grug-far)
 
 -- Yazi file explorer
 map({ "n", "v" }, "<leader>yf", "<cmd>Yazi<cr>", { desc = "Open yazi at the current file" }) -- Yazi open at current file
