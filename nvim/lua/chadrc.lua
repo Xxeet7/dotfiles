@@ -89,12 +89,16 @@ local M = {}
 
 -- base46 configuration
 M.base46 = {
-  theme = "chadracula",
+  theme = "flouromachine",
   transparency = false,
   integrations = {
     "notify",
+    "hop",
+    "semantic_tokens",
+    "todo",
+    "grug_far",
   },
-  theme_toggle = { "chadracula", "oceanic-light" },
+  theme_toggle = { "flouromachine", "oceanic-light" },
   hl_override = {
     NvDashAscii = { fg = "#FFC6C6", bold = true },
     Comment = { italic = true },
