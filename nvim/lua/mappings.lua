@@ -72,6 +72,11 @@ map("n", "<leader>tw", function()
   vim.opt.wrap = not vim.opt.wrap._value
 end, { desc = "toggle wrap line" }) -- Wrap line
 map("n", "<leader>ta", ToggleAnimation, { desc = "toggle editor animation" }) -- animation
+map("n", "<leader>tl", toggle_lsp, { desc = "Toggle lsp" }) -- toggle lsp
+map("n", "<leader>tu", function()
+  require("symbol-usage").toggle_globally()
+  require("symbol-usage").refresh()
+end, { desc = "Toggle virtual symbol usage near a function", silent = true }) -- Toggle virtual symbol usage
 
 -- Code Utils
 map(
