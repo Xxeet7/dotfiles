@@ -1,3 +1,6 @@
+# Disable the default greeting message
+set -U fish_greeting ""
+
 # environment variables
 set --export EDITOR nvim
 set --export XDG_CONFIG_HOME "$HOME/.config"
